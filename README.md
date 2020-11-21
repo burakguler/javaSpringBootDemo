@@ -1,2 +1,2 @@
 # javaSpringBootDemo
-Practicing Java with developing Maven, Spring Boot project
+Practicing Java with developing Maven, Spring Boot, Spring-Rest project
