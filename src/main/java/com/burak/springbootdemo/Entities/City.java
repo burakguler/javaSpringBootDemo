@@ -1,4 +1,4 @@
-package com.burak.project.hibernateAndJpa.Entities;
+package com.burak.springbootdemo.Entities;
 
 import javax.persistence.*;
 
