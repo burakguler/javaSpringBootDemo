@@ -1,13 +1,16 @@
 package com.burak.springbootdemo.DataAccess;
 
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.burak.springbootdemo.Entities.City;
 
+@Repository
 public class HibernateCityDal implements ICityDal{
 
 	private EntityManager entityManager; //we will inject session factory with this technique 'JPA' 
@@ -18,6 +21,7 @@ public class HibernateCityDal implements ICityDal{
 	}
 	
 	//AOP - Aspect Oriented Programming
+	@Override
 	@Transactional
 	public List<City> getAll() {
 		// TODO Auto-generated method stub
@@ -26,19 +30,30 @@ public class HibernateCityDal implements ICityDal{
 		return cities;
 	}
 
+	@Override
 	public void add(City city) {
 		// TODO Auto-generated method stub
-		
+		Session session = entityManager.unwrap(Session.class);
+		session.saveOrUpdate(city);
 	}
-
+	@Override
 	public void update(City city) {
 		// TODO Auto-generated method stub
-		
+		Session session = entityManager.unwrap(Session.class);
+		session.saveOrUpdate(city);
 	}
-
+	@Override
 	public void delete(City city) {
 		// TODO Auto-generated method stub
-		
+		Session session = entityManager.unwrap(Session.class);
+		session.delete(city);
+	}
+
+	@Override
+	public City getById(int id) {
+		Session session = entityManager.unwrap(Session.class);
+		City city = session.get(City.class, id);
+		return city;
 	}
 	
 
